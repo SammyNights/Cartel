@@ -5,7 +5,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.citizensnpcs.api.CitizensAPI;
@@ -53,7 +52,7 @@ public class Main extends JavaPlugin {
   			if(count == 300)
             {
             	p.sendMessage("See Ya Boss!");
-/*    		    npc.destroy();*/
+    		    npc.destroy();
                 return true;
             }
   			if(count != 300)
