@@ -1,0 +1,17 @@
+name: Cartel
+author: SammyNights
+version: 4.0.5
+main: me.sammynights.cartel.Main
+depend:
+  - Citizens
+  - Builder
+  - AlphaClearChat
+commands:
+  cartel:
+    description: Lists builder commands.
+    usage: /cartel help
+permissions:
+  cartel.*:
+    default: op
+    children:
+       cartel.use: true
