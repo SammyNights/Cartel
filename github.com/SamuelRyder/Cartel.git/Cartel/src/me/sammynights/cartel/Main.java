@@ -5,25 +5,37 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 
-public class Main extends JavaPlugin {
 
-    @Override
-    public void onEnable(){
-        //Fired when the server enables the plugin
-    }
+public class Main extends JavaPlugin implements Listener {
 
-    @Override
-    public void onDisable(){
-        //Fired when the server stops and disables all plugins
-    }
-    int count = 1 + 1;
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) 
+	NPC npc;
+	Player p;
+	Location location;
+	
+	@Override
+	public void onEnable() {
+		// Fired when the server enables the plugin
+		npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Pedro");
+		location = p.getLocation();
+	}
+
+	@Override
+	public void onDisable() {
+		// Fired when the server stops and disables all plugins
+	}
+/*	public static buildtimer(String[] args)
+	{
+		
+	}
+	int x = 1;  */
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) 
     {	
 	      	if(label.equalsIgnoreCase("cartel"))
     	{
@@ -37,11 +49,12 @@ public class Main extends JavaPlugin {
     			sender.sendMessage("You do not have permission to start a Cartel!");
     			return true;
     		}
-    		NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Pedro");
-    		Player p = (Player) sender;
-    		Location location = p.getLocation();
+    		// NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Pedro");
+    		p = (Player) sender;
+    		// Location location = p.getLocation();
    			npc.isSpawned();
    			npc.getEntity();
+   			npc.getId();
    			npc.spawn(location);
    			p.performCommand("npc select");
   			p.performCommand("trait builder");
@@ -49,19 +62,12 @@ public class Main extends JavaPlugin {
   			p.performCommand("builder build ignoreair");
   			p.performCommand("acc clear self");
   			p.sendMessage("Hello " + p.getName() + " I'm Pedro!");
-  			if(count == 300)
-            {
-            	p.sendMessage("See Ya Boss!");
-    		    npc.destroy();
-                return true;
-            }
-  			if(count != 300)
-  			{
-  				
-  			}
-            return true;
-            }
-            
+ 			p.sendMessage("All Done Boss!");
+      		npc.destroy();
+      		return false;
+       		}
+       		
     return false;
 }
 }
+
