@@ -1,28 +1,27 @@
 package me.sammynights.cartel;
 
 import org.bukkit.Location;
+import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 
 
-public class Main extends JavaPlugin implements Listener {
+public class Main extends JavaPlugin {
 
 	NPC npc;
 	Player p;
 	Location location;
+	Server server;
 	
 	@Override
 	public void onEnable() {
 		// Fired when the server enables the plugin
-		npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Pedro");
-		location = p.getLocation();
 	}
 
 	@Override
@@ -49,9 +48,9 @@ public class Main extends JavaPlugin implements Listener {
     			sender.sendMessage("You do not have permission to start a Cartel!");
     			return true;
     		}
-    		// NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Pedro");
+    		npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Pedro");
     		p = (Player) sender;
-    		// Location location = p.getLocation();
+    		location = p.getLocation();
    			npc.isSpawned();
    			npc.getEntity();
    			npc.getId();
@@ -62,11 +61,12 @@ public class Main extends JavaPlugin implements Listener {
   			p.performCommand("builder build ignoreair");
   			p.performCommand("acc clear self");
   			p.sendMessage("Hello " + p.getName() + " I'm Pedro!");
- 			p.sendMessage("All Done Boss!");
-      		npc.destroy();
+  			buildtimer();
+  			// npc.;
+  			// p.sendMessage("All Done Boss!");
+      		// npc.despawn();
       		return false;
        		}
-       		
     return false;
 }
 }

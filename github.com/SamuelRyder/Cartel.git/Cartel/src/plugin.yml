@@ -1,6 +1,6 @@
 name: Cartel
 author: SammyNights
-version: 4.0.5
+version: 4.0.7
 main: me.sammynights.cartel.Main
 depend:
   - Citizens
